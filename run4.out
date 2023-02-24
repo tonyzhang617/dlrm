@@ -1,0 +1,162 @@
+world size: 1, current rank: 0, local rank: 0
+Using CPU...
+time/loss/accuracy (if enabled):
+Testing for inference only
+ accuracy 50.052 %, best 50.052 %
+seq_bmlp_time: 0.4038105010986328
+seq_int_time: 0.192183256149292
+seq_emb_time: 11.660807609558105
+seq_tmlp_time: 10.185564994812012
+world size: 1, current rank: 0, local rank: 0
+Using CPU...
+time/loss/accuracy (if enabled):
+Testing for inference only
+ accuracy 50.035 %, best 50.035 %
+seq_bmlp_time: 0.40932178497314453
+seq_int_time: 0.20768189430236816
+seq_emb_time: 16.206860542297363
+seq_tmlp_time: 10.224535465240479
+world size: 1, current rank: 0, local rank: 0
+Using CPU...
+time/loss/accuracy (if enabled):
+Testing for inference only
+ accuracy 50.079 %, best 50.079 %
+seq_bmlp_time: 0.40868616104125977
+seq_int_time: 0.21038556098937988
+seq_emb_time: 25.592137336730957
+seq_tmlp_time: 10.427875280380249
+world size: 1, current rank: 0, local rank: 0
+Using CPU...
+time/loss/accuracy (if enabled):
+Testing for inference only
+ accuracy 50.223 %, best 50.223 %
+seq_bmlp_time: 0.5478458404541016
+seq_int_time: 0.2845890522003174
+seq_emb_time: 93.84616708755493
+seq_tmlp_time: 12.947028875350952
+world size: 1, current rank: 0, local rank: 0
+Using CPU...
+time/loss/accuracy (if enabled):
+Testing for inference only
+ accuracy 50.264 %, best 50.264 %
+seq_bmlp_time: 0.5547034740447998
+seq_int_time: 0.3066580295562744
+seq_emb_time: 185.1615252494812
+seq_tmlp_time: 12.901531219482422
+world size: 1, current rank: 0, local rank: 0
+Using CPU...
+time/loss/accuracy (if enabled):
+Testing for inference only
+ accuracy 50.111 %, best 50.111 %
+seq_bmlp_time: 0.541039228439331
+seq_int_time: 0.34371352195739746
+seq_emb_time: 335.4866797924042
+seq_tmlp_time: 12.96021318435669
+world size: 1, current rank: 0, local rank: 0
+Using CPU...
+time/loss/accuracy (if enabled):
+Testing for inference only
+ accuracy 50.052 %, best 50.052 %
+seq_bmlp_time: 0.23398303985595703
+seq_int_time: 0.27729034423828125
+seq_emb_time: 4.682239770889282
+seq_tmlp_time: 2.1131930351257324
+world size: 1, current rank: 0, local rank: 0
+Using CPU...
+time/loss/accuracy (if enabled):
+Testing for inference only
+ accuracy 50.035 %, best 50.035 %
+seq_bmlp_time: 0.21573305130004883
+seq_int_time: 0.2671792507171631
+seq_emb_time: 4.456557750701904
+seq_tmlp_time: 1.9551293849945068
+world size: 1, current rank: 0, local rank: 0
+Using CPU...
+time/loss/accuracy (if enabled):
+Testing for inference only
+ accuracy 50.079 %, best 50.079 %
+seq_bmlp_time: 0.22765874862670898
+seq_int_time: 0.2788360118865967
+seq_emb_time: 7.4789814949035645
+seq_tmlp_time: 2.0365164279937744
+world size: 1, current rank: 0, local rank: 0
+Using CPU...
+time/loss/accuracy (if enabled):
+Testing for inference only
+ accuracy 50.223 %, best 50.223 %
+seq_bmlp_time: 0.2903616428375244
+seq_int_time: 0.281219482421875
+seq_emb_time: 10.600085020065308
+seq_tmlp_time: 2.0811760425567627
+world size: 1, current rank: 0, local rank: 0
+Using CPU...
+time/loss/accuracy (if enabled):
+Testing for inference only
+ accuracy 50.264 %, best 50.264 %
+seq_bmlp_time: 0.4641754627227783
+seq_int_time: 0.30109119415283203
+seq_emb_time: 17.923126935958862
+seq_tmlp_time: 2.2729053497314453
+world size: 1, current rank: 0, local rank: 0
+Using CPU...
+time/loss/accuracy (if enabled):
+Testing for inference only
+ accuracy 50.111 %, best 50.111 %
+seq_bmlp_time: 0.7762036323547363
+seq_int_time: 0.3211836814880371
+seq_emb_time: 33.167906284332275
+seq_tmlp_time: 2.5637190341949463
+world size: 1, current rank: 0, local rank: 0
+Using CPU...
+time/loss/accuracy (if enabled):
+Testing for inference only
+ accuracy 50.052 %, best 50.052 %
+seq_bmlp_time: 0.3888421058654785
+seq_int_time: 0.3590869903564453
+seq_emb_time: 6.8771278858184814
+seq_tmlp_time: 1.3190593719482422
+world size: 1, current rank: 0, local rank: 0
+Using CPU...
+time/loss/accuracy (if enabled):
+Testing for inference only
+ accuracy 50.035 %, best 50.035 %
+seq_bmlp_time: 0.21920537948608398
+seq_int_time: 0.2938504219055176
+seq_emb_time: 4.994521617889404
+seq_tmlp_time: 1.3020329475402832
+world size: 1, current rank: 0, local rank: 0
+Using CPU...
+time/loss/accuracy (if enabled):
+Testing for inference only
+ accuracy 50.079 %, best 50.079 %
+seq_bmlp_time: 0.24984025955200195
+seq_int_time: 0.31972169876098633
+seq_emb_time: 9.167794227600098
+seq_tmlp_time: 1.358759880065918
+world size: 1, current rank: 0, local rank: 0
+Using CPU...
+time/loss/accuracy (if enabled):
+Testing for inference only
+ accuracy 50.223 %, best 50.223 %
+seq_bmlp_time: 0.45362043380737305
+seq_int_time: 0.3385350704193115
+seq_emb_time: 9.687734365463257
+seq_tmlp_time: 1.485022783279419
+world size: 1, current rank: 0, local rank: 0
+Using CPU...
+time/loss/accuracy (if enabled):
+Testing for inference only
+ accuracy 50.264 %, best 50.264 %
+seq_bmlp_time: 0.7015213966369629
+seq_int_time: 0.34488654136657715
+seq_emb_time: 12.300923109054565
+seq_tmlp_time: 1.4998371601104736
+world size: 1, current rank: 0, local rank: 0
+Using CPU...
+time/loss/accuracy (if enabled):
+Testing for inference only
+ accuracy 50.111 %, best 50.111 %
+seq_bmlp_time: 0.44005298614501953
+seq_int_time: 0.35364866256713867
+seq_emb_time: 20.05726957321167
+seq_tmlp_time: 1.368635892868042

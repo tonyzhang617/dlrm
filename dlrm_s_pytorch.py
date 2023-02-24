@@ -323,6 +323,12 @@ class DLRM_Net(nn.Module):
             self.sync_dense_params = sync_dense_params
             self.loss_threshold = loss_threshold
             self.loss_function = loss_function
+
+            self.seq_bmlp_time = 0
+            self.seq_tmlp_time = 0
+            self.seq_int_time = 0
+            self.seq_emb_time = 0
+
             if weighted_pooling is not None and weighted_pooling != "fixed":
                 self.weighted_pooling = "learned"
             else:
@@ -577,22 +583,39 @@ class DLRM_Net(nn.Module):
 
     def sequential_forward(self, dense_x, lS_o, lS_i):
         # process dense features (using bottom mlp), resulting in a row vector
+        mlp_in_time = time_wrap(False)
         x = self.apply_mlp(dense_x, self.bot_l)
+        mlp_out_time = time_wrap(False)
         # debug prints
         # print("intermediate")
         # print(x.detach().cpu().numpy())
 
         # process sparse features(using embeddings), resulting in a list of row vectors
+
+        emb_in_time = time_wrap(False)
         ly = self.apply_emb(lS_o, lS_i, self.emb_l, self.v_W_l)
+        emb_out_time = time_wrap(False)
+
         # for y in ly:
         #     print(y.detach().cpu().numpy())
 
         # interact features (dense and sparse)
+
+        int_in_time = time_wrap(False)
         z = self.interact_features(x, ly)
+        int_out_time = time_wrap(False)
         # print(z.detach().cpu().numpy())
 
         # obtain probability of a click (using top mlp)
+
+        tmlp_in_time = time_wrap(False)
         p = self.apply_mlp(z, self.top_l)
+        tmlp_out_time = time_wrap(False)
+
+        self.seq_bmlp_time += (mlp_out_time - mlp_in_time)
+        self.seq_tmlp_time += (tmlp_out_time - tmlp_in_time)
+        self.seq_int_time += (int_out_time - int_in_time)
+        self.seq_emb_time += (emb_out_time - emb_in_time)
 
         # clamp output if needed
         if 0.0 < self.loss_threshold and self.loss_threshold < 1.0:
@@ -760,6 +783,11 @@ def inference(
     test_accu = 0
     test_samp = 0
 
+    seq_bmlp_time = 0
+    seq_tmlp_time = 0
+    seq_emb_time = 0
+    seq_int_time = 0
+
     if args.mlperf_logging:
         scores = []
         targets = []
@@ -778,6 +806,11 @@ def inference(
             print("Warning: Skiping the batch %d with size %d" % (i, X_test.size(0)))
             continue
 
+        seq_bmlp_time -= dlrm.seq_bmlp_time
+        seq_tmlp_time -= dlrm.seq_tmlp_time
+        seq_emb_time -= dlrm.seq_emb_time
+        seq_int_time -= dlrm.seq_int_time
+
         # forward pass
         Z_test = dlrm_wrap(
             X_test,
@@ -787,6 +820,12 @@ def inference(
             device,
             ndevices=ndevices,
         )
+
+        seq_bmlp_time += dlrm.seq_bmlp_time
+        seq_tmlp_time += dlrm.seq_tmlp_time
+        seq_emb_time += dlrm.seq_emb_time
+        seq_int_time += dlrm.seq_int_time
+
         ### gather the distributed results on each rank ###
         # For some reason it requires explicit sync before all_gather call if
         # tensor is on GPU memory
@@ -887,6 +926,12 @@ def inference(
             ),
             flush=True,
         )
+
+    print("seq_bmlp_time:", seq_bmlp_time)
+    print("seq_int_time:", seq_int_time)
+    print("seq_emb_time:", seq_emb_time)
+    print("seq_tmlp_time:", seq_tmlp_time)
+
     return model_metrics_dict, is_best
 
 
@@ -1007,12 +1052,16 @@ def run():
     parser.add_argument("--lr-num-warmup-steps", type=int, default=0)
     parser.add_argument("--lr-decay-start-step", type=int, default=0)
     parser.add_argument("--lr-num-decay-steps", type=int, default=0)
+    parser.add_argument('--num-threads', type=int, default=None)
 
     global args
     global nbatches
     global nbatches_test
     global writer
     args = parser.parse_args()
+
+    if isinstance(args.num_threads, int):
+        torch.set_num_threads(args.num_threads)
 
     if args.dataset_multiprocessing:
         assert float(sys.version[:3]) > 3.7, (
